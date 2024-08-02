@@ -127,37 +127,40 @@ app.post("/todos",authenticationToken,async(request,response)=>{
     const todoQuery = `INSERT INTO todo (user_id,todo,description,status,priority) 
     VALUES (${user_id},"${todo}","${description}","${status}","${priority}");`
     await db.run(todoQuery)
-    const newTodoQuery = `SELECT * FROM todo`
+    const newTodoQuery = `SELECT * FROM todo WHERE user_id = ${user_id}`
     const getTodoQuery = await db.all(newTodoQuery)
     response.send(getTodoQuery.map(eachTodo=> todoDetails(eachTodo)))
 })
 
-app.put('/status/:id',async(request,response)=>{
+app.put('/status/:id',authenticationToken,async(request,response)=>{
+    const {user_id} = request
     const {status} = request.body
     const {id} = request.params
     const todoQuery = `UPDATE todo SET status="${status}" WHERE id = ${id};`
     await db.run(todoQuery)
-    const getTodoQuery = `SELECT * from todo;`
+    const getTodoQuery = `SELECT * from todo WHERE user_id = ${user_id};`
     const todoArray = await db.all(getTodoQuery)
     response.send(todoArray.map(eachTodo=> todoList(eachTodo)))
 })
 
 app.put("/todos/:id",authenticationToken,async(request,response)=>{ 
+    const {user_id} = request
     const {id} = request.params
     const {todo,description,status,priority} = request.body 
     const todoQuery = `UPDATE todo SET todo= "${todo}", description = "${description}", priority = "${priority}",
-    status = "${status}" WHERE id = ${id}`
+    status = "${status}" WHERE id = ${id};`
     await db.run(todoQuery)
-    const newTodoQuery = `SELECT * FROM todo`
+    const newTodoQuery = `SELECT * FROM todo WHERE = ${user_id};`
     const getTodoQuery = await db.all(newTodoQuery)
     response.send(getTodoQuery.map(eachTodo=> todoDetails(eachTodo)))
 })
 
 app.delete("/todos/:id",authenticationToken,async(request,response)=>{
+    const {user_id} = request
     const {id} = request.params
-    const todoQuery = `DELETE FROM todo WHERE id = ${id}`
+    const todoQuery = `DELETE FROM todo WHERE id = ${id};`
     await db.run(todoQuery)
-    const newTodoQuery = `SELECT * FROM todo`
+    const newTodoQuery = `SELECT * FROM todo WHERE user_id = ${user_id};`
     const getTodoQuery = await db.all(newTodoQuery)
     response.send(getTodoQuery.map(eachTodo=> todoDetails(eachTodo)))
 })
