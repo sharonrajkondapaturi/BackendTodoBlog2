@@ -1,0 +1,49 @@
+###
+
+POST http://localhost:4000/register
+Content-Type: application/json
+
+{
+    "username":"Abishek",
+    "password":"failure"
+}
+
+###
+
+POST http://localhost:4000/login
+Content-Type: application/json
+
+{
+    "username":"SharonRaj",
+    "password":"84249418"
+}
+
+###
+
+POST http://localhost:4000/todos
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYW5uYWgiLCJpYXQiOjE3MjI1ODUzMjB9.uFDSGk80juLvcAosH8zNfGGWLP4WQpOzSyf0tCVuh3Q
+
+{
+    "todo":"Prepare for exams",
+    "description":"Prepare for the University Exams in order to select for Top Most University like CEUT Universities and so on",
+    "status":"HiGH"
+}
+
+###
+GET http://localhost:4000/todos
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJTaGFyb25SYWoiLCJpYXQiOjE3MjI1ODcyMDR9.h2XanAs_zYymOgo3Akn-Jh54szb83tXKXCT4l_5cgKY
+
+###
+
+PUT http://localhost:4000/todos/2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYW5uYWgiLCJpYXQiOjE3MjI1ODUzMjB9.uFDSGk80juLvcAosH8zNfGGWLP4WQpOzSyf0tCVuh3Q
+
+###
+
+DELETE http://localhost:4000/todos/2
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJTaGFyb25SYWoiLCJpYXQiOjE3MjI1ODc2NDV9.NEJ3XCFyIeihvVjUGRuko1z7ZsUMWcj0-LZ23YZaTJo
+
