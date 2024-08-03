@@ -45,7 +45,9 @@
 ----> middileware is used in to access the user's resources
 
 ----> authentication and autherization is used with the help of following libraries 
-          ----> jsonwebtoken --> sign --> verify 
+          in order to access the token or get the token
+	  ----> jsonwebtoken --> sign --> verify 
+	  
           ----> bcrypt --> hash -->compare
 
 ----> deployed backend API is 
