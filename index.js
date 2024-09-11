@@ -1,4 +1,3 @@
-//below are installed with necessary tools to build Api
 const express = require("express")
 const path = require("path")
 const {open} = require("sqlite")
@@ -14,7 +13,6 @@ app.use(express.json())
 app.use(bodyParser.json())
 let db = null;
 
-//initialze the dataBase
 const initializeDbAndServer = async()=>{
     try{
         db= await open({
@@ -33,7 +31,6 @@ const initializeDbAndServer = async()=>{
 
 initializeDbAndServer()
 
-//in order to access user resources authentication is generated using jwtToken and wit playload has the data of the user
 const authenticationToken = (request,response,next)=>{
     let jwtToken;
     const authHeader = request.headers["authorization"];
@@ -58,8 +55,7 @@ const authenticationToken = (request,response,next)=>{
     }
 }
 
-//use to generate the array of todoList
-
+//todoData
 const todoDetails = (eachTodo)=>{
     return{
         id:eachTodo.id,
@@ -71,7 +67,7 @@ const todoDetails = (eachTodo)=>{
     }
 }
 
-//used for registration
+//user registeration API
 app.post("/register",async(request,response)=>{
     const {username,password} = request.body
     const newUserQuery = `SELECT * FROM users WHERE username="${username}";`
@@ -90,7 +86,7 @@ app.post("/register",async(request,response)=>{
     }
 })
 
-//used for Login
+//User Login Api
 app.post("/login",async(request,response)=>{
     const {username,password} = request.body
     const userQuery = `
@@ -116,7 +112,7 @@ app.post("/login",async(request,response)=>{
 
 })
 
-//used to get TodoList
+//get todo List API
 app.get("/todos",authenticationToken,async(request,response)=>{
     const {user_id} = request 
     const {search='',priority=''} = request.query
@@ -126,7 +122,27 @@ app.get("/todos",authenticationToken,async(request,response)=>{
     response.send(getTodo.map(eachTodo=> todoDetails(eachTodo)))
 })
 
-//used to add new TodoList
+//todoCount API
+app.get("/todos/userTodos",authenticationToken,async(request,response)=>{
+    const {user_id} = request
+    const getTodoCount = `SELECT COUNT(*) as todo_count FROM todo WHERE user_id = ${user_id};`
+    const getCount = await db.get(getTodoCount)
+    response.send(getCount)
+})
+
+//accomplished and unaccomplished API
+app.get("/todos/userStatus",authenticationToken,async(request,response)=>{
+    const accomplished = "Accomplished"
+    const unAccomplished = "Unaccomplished"
+    const {user_id} = request
+    const getTodoCount = `SELECT COUNT(CASE WHEN status = "${accomplished}" THEN 1 END) as accomplished_count, 
+    COUNT(CASE WHEN status = "${unAccomplished}" THEN 1 END) as unaccomplished_count
+    FROM todo WHERE user_id = ${user_id};`
+    const getCount = await db.all(getTodoCount)
+    response.send(getCount)
+})
+
+//addNewTodo API
 app.post("/todos",authenticationToken,async(request,response)=>{
     const {user_id} = request
     const {todo,description,status,priority} = request.body
@@ -138,7 +154,7 @@ app.post("/todos",authenticationToken,async(request,response)=>{
     response.send(getTodoQuery.map(eachTodo=> todoDetails(eachTodo)))
 })
 
-//use to update the status of the todoList
+//Update Todo Status API
 app.put('/status/:id',authenticationToken,async(request,response)=>{
     const {user_id} = request
     const {status} = request.body
@@ -150,7 +166,7 @@ app.put('/status/:id',authenticationToken,async(request,response)=>{
     response.send(todoArray.map(eachTodo=> todoDetails(eachTodo)))
 })
 
-//use to update the todo
+//Update Todo API
 app.put("/todos/:id",authenticationToken,async(request,response)=>{ 
     const {user_id} = request
     const {id} = request.params
@@ -163,7 +179,7 @@ app.put("/todos/:id",authenticationToken,async(request,response)=>{
     response.send(getTodoQuery.map(eachTodo=> todoDetails(eachTodo)))
 })
 
-//use to delete Todo
+//Delete Todo API
 app.delete("/todos/:id",authenticationToken,async(request,response)=>{
     const {user_id} = request
     const {id} = request.params

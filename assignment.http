@@ -4,8 +4,8 @@ POST http://localhost:4000/register
 Content-Type: application/json
 
 {
-    "username":"Abishek",
-    "password":"failure"
+    "username":"Shay",
+    "password":"74qa+-*/"
 }
 
 ###
@@ -22,25 +22,25 @@ Content-Type: application/json
 
 POST http://localhost:4000/todos
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJTaGFyb25SYWoiLCJpYXQiOjE3MjI2MzA4MDZ9.TnEMVBSPAU8riK_URJiwFdTBl5eT-IYqTKzDgodJelc
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJTaGF5IiwiaWF0IjoxNzIyNjg4ODQ2fQ.B7jq1prUnU3gQsc-usqDDRyibOcik_M8xui4PiwRXmU
 
 {
-    "todo": "Prepare for Interview",
-    "description": "In order to prepare for the Interview wake up early in the morning and study until evening 6pm take a break and start to study at 7pm to 9pm",
+    "todo": "Prepare To do tea",
+    "description": "In order to y in the morning and study until evening 6pm take a break and start to study at 7pm to 9pm",
     "status": "Accomplished",
     "priority": "MEDIUM"
 }
 
 ###
-GET http://localhost:4000/todos/?priority=MEDIUM&search=Prepare
+GET http://localhost:4000/todos/?priority=&search=
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYW5uYWgiLCJpYXQiOjE3MjI2MDE1NjJ9.K8J9wTv0xz3KxnQ6ZwMBSsGAB8yAP0xpWdld-j35jIk
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYW5uYWgiLCJpYXQiOjE3MjYwNTUwOTh9.YBwqUXhFOU6N6wflKkuIHWhxIXflsRtUs9AW4DqcRi8
 
 ###
 
-PUT http://localhost:4000/todos/6
+PUT http://localhost:4000/todos/8
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJTaGFyb25SYWoiLCJpYXQiOjE3MjI2MzA4MDZ9.TnEMVBSPAU8riK_URJiwFdTBl5eT-IYqTKzDgodJelc
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJTaGF5IiwiaWF0IjoxNzIyNjg4ODQ2fQ.B7jq1prUnU3gQsc-usqDDRyibOcik_M8xui4PiwRXmU
 
 {
     "todo": "Prepare for Interview",
@@ -51,18 +51,31 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hb
 
 ###
 
-PUT http://localhost:4000/status/6
+PUT http://localhost:4000/status/8
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJTaGFyb25SYWoiLCJpYXQiOjE3MjI2MzA4MDZ9.TnEMVBSPAU8riK_URJiwFdTBl5eT-IYqTKzDgodJelc
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJTaGF5IiwiaWF0IjoxNzIyNjg4ODQ2fQ.B7jq1prUnU3gQsc-usqDDRyibOcik_M8xui4PiwRXmU
 
 {
     "status":"Unaccomplished"
 }
 
+###
+
+GET http://localhost:4000/todos/userTodos
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYW5uYWgiLCJpYXQiOjE3MjYwNTUwOTh9.YBwqUXhFOU6N6wflKkuIHWhxIXflsRtUs9AW4DqcRi8
 
 ###
 
-DELETE http://localhost:4000/todos/5
+GET http://localhost:4000/todos/userStatus
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJTaGFyb25SYWoiLCJpYXQiOjE3MjI1ODc2NDV9.NEJ3XCFyIeihvVjUGRuko1z7ZsUMWcj0-LZ23YZaTJo
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJTaGFyb25SYWoiLCJpYXQiOjE3MjYwNTcxOTV9.T_qixeMcbgo6MootrNlix8TtzQDU3hR8chCgX64GC4Q
+
+
+
+###
+
+DELETE http://localhost:4000/todos/8
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hbWUiOiJTaGF5IiwiaWF0IjoxNzIyNjg4ODQ2fQ.B7jq1prUnU3gQsc-usqDDRyibOcik_M8xui4PiwRXmU
 
