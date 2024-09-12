@@ -59,15 +59,10 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidXNlcm5hb
     "status":"Unaccomplished"
 }
 
+
 ###
 
 GET http://localhost:4000/todos/userTodos
-Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJIYW5uYWgiLCJpYXQiOjE3MjYwNTUwOTh9.YBwqUXhFOU6N6wflKkuIHWhxIXflsRtUs9AW4DqcRi8
-
-###
-
-GET http://localhost:4000/todos/userStatus
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJTaGFyb25SYWoiLCJpYXQiOjE3MjYwNTcxOTV9.T_qixeMcbgo6MootrNlix8TtzQDU3hR8chCgX64GC4Q
 

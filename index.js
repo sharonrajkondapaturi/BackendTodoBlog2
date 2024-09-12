@@ -122,21 +122,14 @@ app.get("/todos",authenticationToken,async(request,response)=>{
     response.send(getTodo.map(eachTodo=> todoDetails(eachTodo)))
 })
 
-//todoCount API
+//userTodo Details execution
 app.get("/todos/userTodos",authenticationToken,async(request,response)=>{
-    const {user_id} = request
-    const getTodoCount = `SELECT COUNT(*) as todo_count FROM todo WHERE user_id = ${user_id};`
-    const getCount = await db.get(getTodoCount)
-    response.send(getCount)
-})
-
-//accomplished and unaccomplished API
-app.get("/todos/userStatus",authenticationToken,async(request,response)=>{
     const accomplished = "Accomplished"
     const unAccomplished = "Unaccomplished"
     const {user_id} = request
     const getTodoCount = `SELECT COUNT(CASE WHEN status = "${accomplished}" THEN 1 END) as accomplished_count, 
-    COUNT(CASE WHEN status = "${unAccomplished}" THEN 1 END) as unaccomplished_count
+    COUNT(CASE WHEN status = "${unAccomplished}" THEN 1 END) as unaccomplished_count,
+    COUNT(*) as todo_count
     FROM todo WHERE user_id = ${user_id};`
     const getCount = await db.all(getTodoCount)
     response.send(getCount)
