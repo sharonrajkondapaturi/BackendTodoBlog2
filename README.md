@@ -23,13 +23,6 @@
           ----> id
           ----> username
           ----> password
-
-          ---> below contains the sqlite3 of users
-
-          CREATE TABLE "todo" ("id"	INTEGER NOT NULL,"user_id"	INTEGER,
-	        "todo"	varchar(255),"description"	TEXT,"status"	varchar(255),
-	        "priority"	varchar(255),PRIMARY KEY("id" AUTOINCREMENT),
-	        FOREIGN KEY("user_id") REFERENCES "users");
          
 ----> in todo table the following column represents 
           ----> id
@@ -38,11 +31,6 @@
           ----> description
           ----> priority
           ----> status
-
-          ---> below contains sqlite3 of todo
-
-          CREATE TABLE "users" ("id"	INTEGER NOT NULL,"username"	varchar(255),
-	        "password"	varchar(255),PRIMARY KEY("id" AUTOINCREMENT));
           
 ----> middileware is used in to access the user's resources
 
@@ -55,8 +43,8 @@
 ----> deployed backend API is 
 ### https://backendtodoblog2-4.onrender.com
 
-----> the above API is implemented in
-### https://main--nucleartodo.netlify.app
+----> the above API is implemented in Frontend Deployment
+### [https://main--nucleartodo.netlify.app](https://main--personstodo.netlify.app/)
 
 ----> CRUD operations are used which are mention below:-
         
@@ -75,6 +63,10 @@
 ### GET http://localhost:4000/todos/?priority=''&search=''
 
 --> the above GET method is used to get the tododata of the user and also queried with #priority and #search
+
+### GET http://localhost:4000/todos/userTodos
+
+--> the above GET method is used to get the todo of an user count and also feth the data of an user accomplished and unaccomplished count 
 
 ### PUT http://localhost:4000/todos/:id
 
